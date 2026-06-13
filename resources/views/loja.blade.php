@@ -23,12 +23,6 @@
     --text: #ffffff;
     --muted: #71717a;
     --accent: #a78bfa;
-
-    /* Main area - slightly lighter than global bg */
-    --main-bg: #0f0f12;
-    --card-bg: #17171c;
-    --card-bg-hover: #1c1c22;
-    --col-bg: #13131a;
 }
 
 *{
@@ -89,80 +83,119 @@ nav a:hover{ color:white; }
 nav a.active{ color: var(--accent); }
 
 /* =========================
-   STORE WRAPPER — mais claro
+   STORE LAYOUT
 ========================= */
 
 .store-wrapper{
     max-width: 1600px;
     margin: 0 auto;
-    padding: 1.5rem 2rem 2.5rem;
+    padding: 2rem;
     flex: 1;
-    /* Fundo ligeiramente mais claro que o body */
-    background: var(--main-bg);
-    border-radius: 0 0 24px 24px;
 }
 
-/* =========================
-   FILTRO — compacto, em linha
-========================= */
-
-.filter-bar{
+.store-title{
     margin-bottom: 1.25rem;
     display: flex;
-    align-items: center;
-    gap: .6rem;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
-/* badge de contagem — integrado à filter-bar */
-.store-count-badge{
+.store-title h1{
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.store-title h1 span{ color: var(--accent); }
+
+.store-title p{
+    color: var(--muted);
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+.store-title-meta{
+    min-height: 34px;
     display: inline-flex;
     align-items: center;
     border: 1px solid rgba(126,10,133,.3);
     border-radius: 999px;
     background: rgba(126,10,133,.1);
     color: #c4b5fd;
-    padding: 0 .75rem;
-    height: 34px;
+    padding: 0 .85rem;
     font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: .06em;
-    white-space: nowrap;
-    margin-right: .4rem;
 }
 
-.filter-bar select{
-    height: 34px;
+/* =========================
+   FILTERS  (compacto)
+========================= */
+
+.filter-panel{
+    margin-bottom: 1.5rem;
+    padding: .85rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background:
+        linear-gradient(135deg, rgba(126,10,133,.10), transparent 42%),
+        #111113;
+    box-shadow: 0 10px 28px rgba(0,0,0,.18);
+}
+
+.filter-form{
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr) auto auto;
+    gap: .75rem;
+    align-items: end;
+}
+
+.filter-field{
+    display: grid;
+    gap: .35rem;
+}
+
+.filter-field label{
+    color: #a1a1aa;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.filter-field select{
+    width: 100%;
+    min-height: 38px;
     border: 1px solid #2f2f35;
-    border-radius: 8px;
+    border-radius: 10px;
     outline: 0;
     background: #0c0c0f;
-    color: #d4d4d8;
-    padding: 0 .65rem;
+    color: #fff;
+    padding: 0 .75rem;
     font: inherit;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
     transition: .2s ease;
-    min-width: 140px;
 }
 
-.filter-bar select:focus{
-    border-color: rgba(167,139,250,.6);
-    box-shadow: 0 0 0 3px rgba(126,10,133,.12);
+.filter-field select:focus{
+    border-color: rgba(167,139,250,.78);
+    box-shadow: 0 0 0 3px rgba(126,10,133,.14);
 }
 
 .filter-button,
 .filter-clear{
-    height: 34px;
+    min-height: 38px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: .4rem;
-    border-radius: 8px;
-    padding: 0 .85rem;
+    gap: .5rem;
+    border-radius: 10px;
+    padding: 0 .9rem;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 800;
     text-decoration: none;
     cursor: pointer;
     white-space: nowrap;
@@ -175,7 +208,8 @@ nav a.active{ color: var(--accent); }
     color: #fff;
 }
 
-.filter-button:hover{ transform: translateY(-1px); }
+.filter-button:hover,
+.filter-clear:hover{ transform: translateY(-1px); }
 
 .filter-clear{
     border: 1px solid #3f3f46;
@@ -186,7 +220,6 @@ nav a.active{ color: var(--accent); }
 .filter-clear:hover{
     border-color: #7e0a85;
     color: #fff;
-    transform: translateY(-1px);
 }
 
 .active-filters{
@@ -194,18 +227,18 @@ nav a.active{ color: var(--accent); }
     align-items: center;
     flex-wrap: wrap;
     gap: .4rem;
-    margin-bottom: .9rem;
+    margin-top: .65rem;
 }
 
 .filter-chip{
-    min-height: 24px;
+    min-height: 26px;
     display: inline-flex;
     align-items: center;
     border: 1px solid rgba(167,139,250,.3);
     border-radius: 999px;
     background: rgba(126,10,133,.11);
     color: #ddd6fe;
-    padding: 0 .6rem;
+    padding: 0 .65rem;
     font-size: 11px;
     font-weight: 700;
 }
@@ -216,7 +249,7 @@ nav a.active{ color: var(--accent); }
 
 .brands-grid{
     display: flex;
-    gap: 20px;
+    gap: 24px;
     overflow-x: auto;
     padding-bottom: 10px;
     justify-content: center;
@@ -229,22 +262,22 @@ nav a.active{ color: var(--accent); }
 }
 
 /* =========================
-   BRAND COLUMN — mais larga e luminosa
+   BRAND COLUMN
 ========================= */
 
 .brand-col{
-    min-width: 400px;
-    width: 400px;
-    height: 82vh;
-    background: linear-gradient(180deg, var(--col-bg) 0%, #111118 100%);
-    border: 1px solid #252530;
-    border-radius: 20px;
+    min-width: 320px;
+    width: 320px;
+    height: 78vh;
+    background: linear-gradient(180deg, #111113 0%, #0d0d0f 100%);
+    border: 1px solid #232326;
+    border-radius: 24px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.04),
-        0 8px 32px rgba(0,0,0,.28);
+        inset 0 1px 0 rgba(255,255,255,.03),
+        0 10px 40px rgba(0,0,0,.35);
 }
 
 /* =========================
@@ -252,31 +285,29 @@ nav a.active{ color: var(--accent); }
 ========================= */
 
 .brand-header{
-    padding: 18px 20px;
-    border-bottom: 1px solid #202028;
+    padding: 20px;
+    border-bottom: 1px solid #1f1f22;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(126,10,133,.05);
 }
 
 .brand-name{
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: .18em;
     font-weight: 700;
     color: var(--accent);
-    text-transform: uppercase;
 }
 
 .brand-count{
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1a1a22;
-    border: 1px solid #2c2c38;
+    background: #16161a;
+    border: 1px solid #2c2c31;
     color: #a1a1aa;
     font-size: 11px;
 }
@@ -287,10 +318,10 @@ nav a.active{ color: var(--accent); }
 
 .product-list-inner{
     overflow-y: auto;
-    padding: 16px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
 }
 
 .product-list-inner::-webkit-scrollbar{ width: 4px; }
@@ -300,54 +331,53 @@ nav a.active{ color: var(--accent); }
 }
 
 /* =========================
-   PRODUCT CARD — mais claro e destacado
+   PRODUCT CARD
 ========================= */
 
 .product-card{
-    background: var(--card-bg);
-    border: 1px solid #28283a;
-    border-radius: 16px;
+    background: #141418;
+    border: 1px solid #232329;
+    border-radius: 18px;
     padding: 16px;
     transition: .25s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 370px;
 }
 
 .product-card:hover{
-    transform: translateY(-3px);
-    border-color: rgba(126,10,133,.55);
-    background: var(--card-bg-hover);
+    transform: translateY(-4px);
+    border-color: rgba(126,10,133,.6);
     box-shadow:
-        0 0 0 1px rgba(126,10,133,.12),
-        0 14px 36px rgba(126,10,133,.16);
+        0 0 0 1px rgba(126,10,133,.15),
+        0 15px 40px rgba(126,10,133,.18);
 }
 
 /* =========================
-   IMAGE — zona generosa
+   IMAGE
 ========================= */
 
 .card-img-link{
     width: 100%;
-    height: 210px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #0c0c0f;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
-    margin-bottom: 14px;
-    flex-shrink: 0;
+    margin-bottom: 16px;
 }
 
 .card-img-link img{
-    max-width: 88%;
-    max-height: 190px;
+    max-width: 90%;
+    max-height: 180px;
     object-fit: contain;
     transition: .35s ease;
 }
 
-.product-card:hover img{ transform: scale(1.05); }
+.product-card:hover img{ transform: scale(1.06); }
 
 /* =========================
    CARD BODY
@@ -358,38 +388,37 @@ nav a.active{ color: var(--accent); }
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 10px;
 }
 
 .card-name-link{ text-decoration: none; }
 
 .card-name{
-    font-size: 13.5px;
+    font-size: 14px;
     line-height: 1.5;
-    color: #e4e4e7;
+    color: #f4f4f5;
     font-weight: 600;
-    min-height: 40px;
+    min-height: 44px;
 }
 
 .card-price{
-    font-size: 20px;
+    margin-top: 12px;
+    font-size: 22px;
     font-weight: 700;
     color: #fff;
-    line-height: 1.2;
 }
 
 .card-price small{
     display: block;
-    margin-top: 2px;
+    margin-top: 3px;
     font-size: 11px;
     color: #71717a;
-    font-weight: 400;
 }
 
 .btn-add{
+    margin-top: auto;
     width: 100%;
-    height: 40px;
-    border-radius: 10px;
+    height: 44px;
+    border-radius: 12px;
     border: none;
     background: linear-gradient(135deg, #7e0a85, #5c0760);
     color: white;
@@ -400,30 +429,13 @@ nav a.active{ color: var(--accent); }
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
+    gap: 8px;
     text-decoration: none;
-    margin-top: auto;
 }
 
 .btn-add:hover{
     transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(126,10,133,.35);
-}
-
-/* =========================
-   EMPTY STATE
-========================= */
-
-.empty-state{
-    text-align: center;
-    padding: 4rem 1rem;
-    color: var(--muted);
-}
-
-.empty-state h3{
-    font-size: 1.1rem;
-    color: #a1a1aa;
-    margin-bottom: .5rem;
+    box-shadow: 0 10px 25px rgba(126,10,133,.35);
 }
 
 /* =========================
@@ -521,16 +533,17 @@ nav a.active{ color: var(--accent); }
 
 @media(max-width: 768px){
     .store-wrapper{ padding: 1rem; }
-    .brand-col{ min-width: 300px; width: 300px; }
-    .card-img-link{ height: 190px; }
+    .brand-col{ min-width: 280px; width: 280px; }
+    .product-card{ min-height: 340px; }
+    .card-img-link{ height: 180px; }
     .store-footer-grid{ grid-template-columns: 1fr 1fr; }
-    .filter-bar{ gap: .4rem; }
-    .filter-bar select{ min-width: 120px; }
+    .filter-form{ grid-template-columns: 1fr; }
 }
 
 @media(max-width: 560px){
     .store-footer-grid{ grid-template-columns: 1fr; gap: 1.5rem; }
     .store-footer-bottom{ align-items: flex-start; flex-direction: column; }
+    .store-title{ align-items: flex-start; }
 }
 </style>
 </head>
@@ -543,37 +556,44 @@ nav a.active{ color: var(--accent); }
     <x-site-header active="loja" />
 
     <div class="store-wrapper">
+        <div class="store-title">
+            <div class="store-title-meta">
+                {{ $productsByBrand->flatten(1)->count() }} {{ $productsByBrand->flatten(1)->count() === 1 ? 'produto' : 'produtos' }}
+            </div>
+        </div>
 
-        {{-- FILTRO COMPACTO em linha única --}}
-        <div>
-            <form class="filter-bar" method="GET" action="{{ route('loja') }}">
+        <section class="filter-panel" aria-label="Filtros da loja">
+            <form class="filter-form" method="GET" action="{{ route('loja') }}">
+                <div class="filter-field">
+                    <label for="brand">Marca</label>
+                    <select id="brand" name="brand">
+                        <option value="">Todas as marcas</option>
+                        @foreach($brands as $brandOption)
+                            <option value="{{ $brandOption }}" @selected($selectedBrand === $brandOption)>
+                                {{ $brandOption }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
 
-                <span class="store-count-badge">
-                    {{ $productsByBrand->flatten(1)->count() }}
-                    {{ $productsByBrand->flatten(1)->count() === 1 ? 'produto' : 'produtos' }}
-                </span>
+                <div class="filter-field">
+                    <label for="price_range">Faixa de preço</label>
+                    <select id="price_range" name="price_range">
+                        <option value="">Todos os preços</option>
+                        <option value="0-1500" @selected($selectedPriceRange === '0-1500')>Até R$ 1.500</option>
+                        <option value="1500-3000" @selected($selectedPriceRange === '1500-3000')>R$ 1.500 a R$ 3.000</option>
+                        <option value="3000-5000" @selected($selectedPriceRange === '3000-5000')>R$ 3.000 a R$ 5.000</option>
+                        <option value="5000-plus" @selected($selectedPriceRange === '5000-plus')>Acima de R$ 5.000</option>
+                    </select>
+                </div>
 
-                <select id="brand" name="brand" aria-label="Marca">
-                    <option value="">Todas as marcas</option>
-                    @foreach($brands as $brandOption)
-                        <option value="{{ $brandOption }}" @selected($selectedBrand === $brandOption)>
-                            {{ $brandOption }}
-                        </option>
-                    @endforeach
-                </select>
+                <button class="filter-button" type="submit">
+                    Filtrar
+                </button>
 
-                <select id="price_range" name="price_range" aria-label="Faixa de preço">
-                    <option value="">Todos os preços</option>
-                    <option value="0-1500"    @selected($selectedPriceRange === '0-1500')>Até R$ 1.500</option>
-                    <option value="1500-3000" @selected($selectedPriceRange === '1500-3000')>R$ 1.500 – R$ 3.000</option>
-                    <option value="3000-5000" @selected($selectedPriceRange === '3000-5000')>R$ 3.000 – R$ 5.000</option>
-                    <option value="5000-plus" @selected($selectedPriceRange === '5000-plus')>Acima de R$ 5.000</option>
-                </select>
-
-                <button class="filter-button" type="submit">Filtrar</button>
-
-                <a class="filter-clear" href="{{ route('loja') }}">Limpar</a>
-
+                <a class="filter-clear" href="{{ route('loja') }}">
+                    Limpar
+                </a>
             </form>
 
             @if($selectedBrand || $selectedPriceRange)
@@ -594,9 +614,8 @@ nav a.active{ color: var(--accent); }
                     @endif
                 </div>
             @endif
-        </div>
+        </section>
 
-        {{-- GRID DE MARCAS --}}
         @if(isset($productsByBrand) && $productsByBrand->isNotEmpty())
             <div class="brands-grid">
                 @foreach($productsByBrand as $brand => $products)

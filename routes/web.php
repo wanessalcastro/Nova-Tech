@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Models\Product;
 
 Route::get('/produto/{id}', [App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
-Route::patch('/cart/{product}', [CartController::class, 'update'])->name('cart.update');
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +98,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('cart')->name('cart.')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::post('/add/{id}', [CartController::class, 'add'])->name('add');
+        Route::patch('/{product}', [CartController::class, 'update'])->name('update');
         Route::delete('/remove/{id}', [CartController::class, 'remove'])->name('remove');
         Route::delete('/clear', [CartController::class, 'clear'])->name('clear');
         Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');

@@ -137,6 +137,7 @@
         cursor: pointer;
         list-style: none;
         gap: 8px;
+        max-width: 190px;
     }
 
     .nt-account-summary::-webkit-details-marker {
@@ -260,6 +261,53 @@
             left: 50%;
             right: auto;
             transform: translateX(-50%);
+        }
+    }
+
+    @media (max-width: 560px) {
+        .nt-header-shell {
+            width: min(100% - 24px, 1180px);
+            gap: 10px;
+        }
+
+        .nt-brand img {
+            height: 40px;
+            max-width: 145px;
+        }
+
+        .nt-nav {
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+
+        .nt-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nt-nav a,
+        .nt-account-summary,
+        .nt-auth-link {
+            min-height: 38px;
+            padding: 0 11px;
+            font-size: 13px;
+        }
+
+        .nt-actions {
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .nt-account-summary {
+            max-width: min(68vw, 220px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nt-menu {
+            width: min(92vw, 240px);
         }
     }
 </style>

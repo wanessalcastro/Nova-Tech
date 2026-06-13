@@ -88,17 +88,16 @@ class CartController extends Controller
         return redirect()->route('checkout.index');
     }
 
-    // Atualiza a quantidade do produto no carrinho
     public function update(Request $request, $productId)
     {
         $request->validate([
-            'quantity' => 'required|integer|min:1'
+            'quantity' => 'required|integer|min:1',
         ]);
 
         Cart::where('user_id', Auth::id())
             ->where('product_id', $productId)
             ->update([
-                'quantity' => $request->quantity
+                'quantity' => $request->quantity,
             ]);
 
         return back()->with('success', 'Quantidade atualizada.');
